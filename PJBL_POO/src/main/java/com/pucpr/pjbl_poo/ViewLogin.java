@@ -110,7 +110,7 @@ public class ViewLogin extends javax.swing.JFrame {
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,6 +139,9 @@ public class ViewLogin extends javax.swing.JFrame {
         if ("tuxedo6830".equals(jPasswordField1.getText()) && "bernardo".equals(jTextField2.getText()) ){
             JOptionPane.showMessageDialog(this, "Bem vindo!", "Entrada bem-sucedida",
                     JOptionPane.INFORMATION_MESSAGE);
+            
+            dispose();
+            new ViewMenu();
         } else {
             JOptionPane.showMessageDialog(this, "Senha errada!", "Erro!",
                     JOptionPane.ERROR_MESSAGE);
