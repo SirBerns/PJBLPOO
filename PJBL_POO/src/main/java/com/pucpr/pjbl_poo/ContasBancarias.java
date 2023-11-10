@@ -20,6 +20,7 @@ abstract public class ContasBancarias implements Transacoes {
 
     }
 
+    @Override
     public void depdepositSaldo(double valor) {
         if (valor > 0) {
             saldoConta += valor;
@@ -30,6 +31,7 @@ abstract public class ContasBancarias implements Transacoes {
         }
     }
 
+    @Override
     public void withdrawMoney(double valor) {
         if (valor > 0 && valor <= saldoConta) {
             saldoConta -= valor;
@@ -40,6 +42,7 @@ abstract public class ContasBancarias implements Transacoes {
         }
     }
 
+    @Override
     public void transferMoney(ContasBancarias contaDestino, double valor) {
         if (valor > 0 && valor <= saldoConta) {
             saldoConta -= valor;
