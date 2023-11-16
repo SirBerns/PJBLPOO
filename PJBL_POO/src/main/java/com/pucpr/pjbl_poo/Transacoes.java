@@ -4,12 +4,7 @@
  */
 package com.pucpr.pjbl_poo;
 
-/**
- *
- * @author bernardo.jakubiak
- */
-interface Transacoes {
-    void depdepositSaldo(double valor);
-    void transferMoney (ContasBancarias contaDestino, double valor);
-    void withdrawMoney(double valor);
+public interface Transacoes {
+    void atualizarSaldoTotal();
+
 }

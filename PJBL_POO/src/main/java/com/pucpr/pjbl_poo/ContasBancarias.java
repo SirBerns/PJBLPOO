@@ -3,80 +3,63 @@ package com.pucpr.pjbl_poo;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract public class ContasBancarias implements Transacoes {
+abstract public class ContasBancarias {
     protected int numConta;
-    protected double saldoConta;
-    protected String nomeConta;
+    protected double saldoContaPoupanca;
+    protected double saldoContaCorrente;
+    protected double saldoTotal;
     protected String proprietarioConta;
-    private final List<Transacao> historico;
 
+    // Getter para 'numConta'
+    public int getNumConta() {
+        return numConta;
+    }
 
-    public ContasBancarias(int numConta, double saldoConta, String nomeConta, String proprietarioConta){
+    // Setter para 'numConta'
+    public void setNumConta(int numConta) {
         this.numConta = numConta;
-        this.saldoConta = saldoConta;
-        this.nomeConta = nomeConta;
+    }
+
+    // Getter para 'saldoContaPoupanca'
+    public double getSaldoContaPoupanca() {
+        return saldoContaPoupanca;
+    }
+
+    // Setter para 'saldoContaPoupanca'
+    public void setSaldoContaPoupanca(double saldoContaPoupanca) {
+        this.saldoContaPoupanca = saldoContaPoupanca;
+    }
+
+    // Getter para 'saldoContaCorrente'
+    public double getSaldoContaCorrente() {
+        return saldoContaCorrente;
+    }
+
+    // Setter para 'saldoContaCorrente'
+    public void setSaldoContaCorrente(double saldoContaCorrente) {
+        this.saldoContaCorrente = saldoContaCorrente;
+    }
+
+    // Getter para 'proprietarioConta'
+    public String getProprietarioConta() {
+        return proprietarioConta;
+    }
+
+    // Setter para 'proprietarioConta'
+    public void setProprietarioConta(String proprietarioConta) {
         this.proprietarioConta = proprietarioConta;
-        this.historico = new ArrayList<>();
-
     }
 
-    @Override
-    public void depdepositSaldo(double valor) {
-        if (valor > 0) {
-            saldoConta += valor;
-            historico.add(new Transacao("Depósito", valor));
-            System.out.println("Depósito de R$" + valor + " realizado com sucesso.");
-        } else {
-            System.out.println("Valor inválido para depósito.");
-        }
+
+    public ContasBancarias(int numConta, double saldoContaPoupanca, double saldoContaCorrente, String proprietarioConta) {
+        this.numConta = numConta;
+        this.saldoContaPoupanca = saldoContaPoupanca;
+        this.saldoContaCorrente = saldoContaCorrente;
+        this.proprietarioConta = proprietarioConta;
+        this.saldoTotal = saldoContaCorrente + saldoContaPoupanca;
     }
 
-    @Override
-    public void withdrawMoney(double valor) {
-        if (valor > 0 && valor <= saldoConta) {
-            saldoConta -= valor;
-            historico.add(new Transacao("Saque", valor));
-            System.out.println("Saque de R$" + valor + " realizado com sucesso.");
-        } else {
-            System.out.println("Saldo insuficiente ou valor de saque inválido.");
-        }
-    }
-
-    @Override
-    public void transferMoney(ContasBancarias contaDestino, double valor) {
-        if (valor > 0 && valor <= saldoConta) {
-            saldoConta -= valor;
-            contaDestino.depdepositSaldo(valor);
-            historico.add(new Transacao("Transferência para " + contaDestino.nomeConta, valor));
-            System.out.println("Transferência de R$" + valor + " para " + contaDestino.nomeConta + " realizada com sucesso.");
-        } else {
-            System.out.println("Saldo insuficiente ou valor de transferência inválido.");
-        }
-    }
-
-    public void verificarSaldo() {
-        System.out.println("Saldo da conta de " + nomeConta + ": R$" + saldoConta);
-    }
-
-    public void imprimirHistorico() {
-        System.out.println("Histórico de transações da conta de " + nomeConta + ":");
-        for (Transacao transacao : historico) {
-            System.out.println(transacao);
-        }
-    }
-
-}
-class Transacao {
-    private final String tipo;
-    private final double valor;
-
-    public Transacao(String tipo, double valor) {
-        this.tipo = tipo;
-        this.valor = valor;
-    }
-
-    @Override
-    public String toString() {
-        return tipo + ": R$" + valor;
+    public double getSaldo() {
+        return this.saldoTotal;
     }
 }
